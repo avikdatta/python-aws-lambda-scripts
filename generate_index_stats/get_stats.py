@@ -4,7 +4,7 @@ import json
 import boto3
 import uuid
 
-s3_client=boto3.client('s3')
+s3_boto=boto3.resource('s3')
 
 def lambda_handler(event, context):
   '''
@@ -20,14 +20,15 @@ def lambda_handler(event, context):
     upload_path='/tmp/stats-{}.json'.format(key)
     
     # Download input file
-    s3_client.download_file(bucket, key, download_path)
+    s3_boto.meta.client.download_file(bucket, key, download_path)
 
     # Read index data
     index_data=FtpIndex(download_path)
+    index_stats=index_data.get_all_stats()
 
     # write json report
     with open(upload_path, 'w') as out_json:
-      json.dumps(index_data.get_all_stats(), out_json, indent=2)    
+      out_json.write(json.dumps(index_stats, indent=2))   
 
     # Upload report to bucket with suffix '-report'
-    s3_client.upload_file(upload_path, '{}-report'.format(bucket), key)
+    s3_boto.meta.client.upload_file(upload_path, '{}-report'.format(bucket), '{}.json'.format(key))
