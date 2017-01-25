@@ -60,7 +60,7 @@ Add a test for the lambda function.
         "configurationId": "testConfigRule",
         "object": {
           "eTag": "0123456789abcdef0123456789abcdef",
-          "key": "i_300.index",
+          "key": "test.index",
           "sequencer": "0A1B2C3D4E5F678901",
           "size": 128
         },
@@ -68,8 +68,8 @@ Add a test for the lambda function.
           "ownerIdentity": {
             "principalId": "EXAMPLE"
           },
-          "name": "ftp_index_files",
-          "arn": "arn:aws:s3:::ftp_index_files"
+          "name": "myInputFiles",
+          "arn": "arn:aws:s3:::myInputFiles"
         },
         "s3SchemaVersion": "1.0"
       },
