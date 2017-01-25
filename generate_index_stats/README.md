@@ -87,8 +87,8 @@ Add a test for the lambda function.
    ]
  }
  </code></pre>
- 
- ### Upload file in input bucket and check the output bucket
+
+### Upload file in input bucket and check the output bucket
  <pre><code>
  # Upload input file
  aws s3 cp input.index s3://myInputFiles
